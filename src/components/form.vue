@@ -129,7 +129,7 @@ export default {
 
 <style scoped >
 .inputArea {
-  width: 50%;
+  width: 80%;
 }
 .charCount{
   place-content: end;
