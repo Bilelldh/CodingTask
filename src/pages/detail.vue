@@ -1,21 +1,25 @@
 <template>
   <div fxFlexFill fxLayout="column" class="mainD">
-
     <div fxFlex="10" fxLayoutAlign="start center">
       <button class="logouBtn" @click="logout()">log out</button>
     </div>
 
     <div fxFlex="40" fxLayoutAlign="center center">
-      <formComponent ref="ChildFormRef" @update-data="updateData" @add-data="addData" />
+      <formComponent
+        ref="ChildFormRef"
+        @update-data="updateData"
+        @add-data="addData"
+      />
     </div>
 
     <div fxFlex class="bg">
-
       <div class="tbl-header" fxFlex>
         <table cellpadding="0" cellspacing="0" border="0" fxFlex>
           <thead>
             <tr>
-              <th v-for="(header, index) in tableHeader" :key="index">{{ header }}</th>
+              <th v-for="(header, index) in tableHeader" :key="index">
+                {{ header }}
+              </th>
             </tr>
           </thead>
         </table>
@@ -23,39 +27,42 @@
       <div class="tbl-content">
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
-            <tr :key="data.id" v-for="data in dataList ">
+            <tr :key="data.id" v-for="data in dataList">
               <td>{{ data.title }}</td>
               <td>{{ data.date }}</td>
-              <td> <button fxFlex="30" fxLayoutAlign="center center" @click="triggerEdit(data)"> Edit </button> </td>
+              <td>
+                <button
+                  fxFlex="30"
+                  fxLayoutAlign="center center"
+                  @click="triggerEdit(data)"
+                >
+                  Edit
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script>
-
-import formComponent from '../components/form.vue'
-
+import formComponent from "../components/form.vue";
 
 export default {
-  name: 'DetailComponent',
+  name: "DetailComponent",
 
   components: {
-    formComponent
+    formComponent,
   },
   data() {
     return {
-      tableHeader: ['Title', 'Date', 'Edit'],
+      tableHeader: ["Title", "Date", "Edit"],
       dataList: [],
-    }
+    };
   },
   methods: {
-
     // add data to dataList
     addData(data) {
       this.dataList.push(data);
@@ -77,17 +84,14 @@ export default {
 
     // logout and remove token
     logout() {
-      this.$router.push('/');
-      localStorage.removeItem('isLogged');
-    }
-
+      localStorage.removeItem("isLogged");
+      this.$router.push("/");
+    },
   },
-
-}
+};
 </script>
 
-
-<style scoped >
+<style scoped>
 table {
   width: 100%;
   table-layout: fixed;
@@ -125,14 +129,14 @@ td {
 
 button {
   background: transparent;
-  border: 2px solid rgba(69, 39, 160, .4);
+  border: 2px solid rgba(69, 39, 160, 0.4);
   color: #ffffff;
   font-family: sans-serif;
   text-transform: uppercase;
   letter-spacing: 3px;
   margin: 20px 0;
   padding: 10px 30px;
-  border: 2px solid #FFF;
+  border: 2px solid #fff;
 }
 
 .logouBtn {
@@ -149,7 +153,7 @@ button {
 
 .logouBtn:hover {
   background: linear-gradient(to right, #005c53, #9fc131);
-  border: 2px solid rgba(69, 39, 160, .4);
+  border: 2px solid rgba(69, 39, 160, 0.4);
   color: white;
 }
 </style>
